@@ -1,4 +1,5 @@
 const Contact = require('../models/Contact');
+const { Op } = require('sequelize'); // Import Op from Sequelize
 
 // Add Contact
 const addContact = async (req, res) => {
