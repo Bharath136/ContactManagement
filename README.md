@@ -30,3 +30,19 @@ Ensure data integrity with transactions for batch processes.
 Security:
 
 Rate limiting and secure password hashing.
+
+
+The necessary packages include:
+
+Next.js: next
+JWT for Authentication: jsonwebtoken
+Email Service (Nodemailer): nodemailer
+Validation: joi
+File Handling: multer, csv-parser, xlsx
+SQL Database: pg (PostgreSQL) 
+ORM (Optional): sequelize
+
+----- to start the server -----
+
+npm install 
+npm run dev

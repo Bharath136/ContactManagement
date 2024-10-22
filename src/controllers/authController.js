@@ -49,19 +49,38 @@ const register = async (req, res) => {
 const login = async (req, res) => {
     const { email, password } = req.body;
 
-    const user = await User.findOne({ where: { email } });
-    if (!user) {
-        return res.status(400).json({ message: 'Invalid credentials' });
-    }
+    try {
+        // Check if user exists
+        const user = await User.findOne({ where: { email } });
+        if (!user) {
+            return res.status(400).json({ message: 'Invalid credentials' });
+        }
 
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-        return res.status(400).json({ message: 'Invalid credentials' });
-    }
+        // Compare password
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(400).json({ message: 'Invalid credentials' });
+        }
 
-    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-    return res.status(200).json({ token, user });
+        // Generate token
+        const token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+        // Send back user details and token
+        return res.status(200).json({
+            message: 'Login successful',
+            token,
+            user: {
+                id: user.id,
+                name: user.name,
+                email: user.email,
+                // Add any other fields you want to include
+            }
+        });
+    } catch (error) {
+        return res.status(500).json({ message: 'Server error', error });
+    }
 };
+
 
 // Email Verification
 const verifyEmail = async (req, res) => {
