@@ -18,7 +18,7 @@ app.use('/auth', authRoutes);
 app.use('/contacts', contactRoutes);
 
 app.get('/', (req, res) => {
-    res.send({ user: "server is running" });
+    res.send("Server is running you can test your apis!");
 });
 
 

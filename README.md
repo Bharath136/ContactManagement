@@ -1,5 +1,5 @@
 Overview
-This assignment assesses your backend development skills using NextJS, focusing on SQL, authentication, data validation, timezones, file handling, and CSV/Excel parsing. 
+This assignment assesses your backend development skills using NextJS, focusing on SQL, authentication, data validation, timezones, file handling, and Excel parsing. 
 
 Features
 User Authentication:
