@@ -17,6 +17,11 @@ app.use(express.json());
 app.use('/auth', authRoutes);
 app.use('/contacts', contactRoutes);
 
+app.get('/', (req, res) => {
+    res.send({ user: "server is running" });
+});
+
+
 // Connect to the database
 const startServer = async () => {
     try {
