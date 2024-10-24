@@ -45,6 +45,17 @@ const register = async (req, res) => {
     return res.status(201).json({ message: 'User registered. Please verify your email.' });
 };
 
+
+const getUsers = async (req, res) => {
+    try {
+        const users = await User.findAll();
+        return res.status(200).json({ users });
+    } catch (error) {
+        return res.status(500).json({ message: 'Error retrieving users', error });
+    }
+};
+
+
 // User Login
 const login = async (req, res) => {
     const { email, password } = req.body;
@@ -97,4 +108,4 @@ const verifyEmail = async (req, res) => {
     }
 };
 
-module.exports = { register, login, verifyEmail };
+module.exports = { register, login, verifyEmail,getUsers };
